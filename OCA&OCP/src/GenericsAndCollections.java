@@ -277,7 +277,7 @@ public class GenericsAndCollections {
 		addSound(objects);
 
 		// Putting it all together
-		System.out.println(Colors.WHITE_BACKGROUND_BRIGHT.get() + Colors.BLACK_BOLD.get() + "\nPutting it all together"
+		System.out.println(Colors.WHITE_BACKGROUND_BRIGHT.get() + Colors.BLACK_BOLD.get() + "\nPuttin' it all together"
 				+ Colors.RESET.get());
 
 	}
