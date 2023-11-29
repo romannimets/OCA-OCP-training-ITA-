@@ -1,10 +1,15 @@
 package genericsAndCollections;
 
-import java.net.MulticastSocket;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Deque;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
+import java.util.Vector;
 
 interface Flyer {
 	void fly();
@@ -277,10 +282,155 @@ public class RUN_GenericsAndCollections {
 		System.out.println("Objects: ");
 		addSound(objects);
 
-		// Putting it all together
-		System.out.println(Colors.WHITE_BACKGROUND_BRIGHT.get() + Colors.BLACK_BOLD.get() + "\nPutting it all together"
+		// List, Sets, Maps,and Queues
+		System.out.println("\n	 " + Colors.RED_BACKGROUND_BRIGHT.get() + Colors.BLACK_UNDERLINED.get()
+				+ Colors.BLACK_BOLD.get() + "LIST, SETS, MAPS AND QUEUES" + Colors.RESET.get());
+		// Metodi di Collection
+		System.out.println(Colors.WHITE_BACKGROUND_BRIGHT.get() + Colors.BLACK_BOLD.get() + "\nMetodi di Collection"
 				+ Colors.RESET.get());
 
+		// add
+		System.out.println(Colors.WHITE_BACKGROUND.get() + Colors.BLACK_BOLD.get() + "\nadd()" + Colors.RESET.get());
+
+		// aggiunge un elemento nella Collection e ritorna un booleano per dire se ha
+		// avuto successo. Firma: boolean add(E element)
+
+		List<String> lString = new ArrayList<>();
+		System.out.println(lString.add("Sparrow")); // ritorna (e stampa) true
+		System.out.println(lString.add("Sparrow")); // ritorna (e stampa) true
+
+		Set<String> set = new HashSet<>();
+		System.out.println(set.add("Sparrow")); // ritorna (e stampa) true
+		System.out.println(set.add("Sparrow")); // ritorna (e stampa) false (no duplicati nel set)
+
+		// remove()
+		System.out.println(Colors.WHITE_BACKGROUND.get() + Colors.BLACK_BOLD.get() + "\nremove()" + Colors.RESET.get());
+		// Rimuove unsingolo valore corrispondente nella Collection e ritorna booleano
+		// Firma: boolean remove(Object object)
+		// C'è un overload del metodo: accetta un int, che funziona come indice
+
+		List<String> uccelli = new ArrayList<>();
+		uccelli.add("falco");
+		uccelli.add("falco"); // ora uccelli è [falco, falco]
+		System.out.println("lista di uccelli: " + uccelli);
+		System.out.println("tentativo di rimuovere 'cardellino': " + uccelli.remove("cardellino")); // false (non c'è
+																									// match)
+		System.out.println("tentativo di rimuovere 'falco': " + uccelli.remove("falco"));
+		System.out.println("lista di uccelli: " + uccelli);
+		System.out.println("rimozione con remove(int index) a indice 0: " + uccelli.remove(0));
+		System.out.println("lista di uccelli: " + uccelli);
+
+		// isEmpty() and size()
+		System.out.println(Colors.WHITE_BACKGROUND.get() + Colors.BLACK_BOLD.get() + "\nisEmpty() and size()"
+				+ Colors.RESET.get());
+		// Questi due metodi guardano il numero di elementi nella collection: uno
+		// ritorna booleano e l'altro int:
+		// Firme: "boolean isEmpty()" e "int size()"
+
+		System.out.println("uccelli.isEmpty(): " + uccelli.isEmpty()); // true
+		System.out.println("uccelli. size(): " + uccelli.size()); // 0
+		uccelli.add("falco");
+		uccelli.add("falco");
+		System.out.println("uccelli dopo .add('falco') fatto 2 volte: " + uccelli);
+		System.out.println("uccelli.isEmpty(): " + uccelli.isEmpty()); // false
+		System.out.println("uccelli.size(): " + uccelli.size()); // 2
+
+		// clear()
+		System.out.println(Colors.WHITE_BACKGROUND.get() + Colors.BLACK_BOLD.get() + "\nclear()" + Colors.RESET.get());
+
+		// Svuota la collection. Firma: void clear()
+		uccelli.clear();
+		System.out.println("uccelli dopo .clear " + uccelli); // []
+		System.out.println("uccelli.isEmpty(): " + uccelli.isEmpty()); // true
+		System.out.println("uccelli.size(): " + uccelli.size()); // 0
+
+		// contains()
+		System.out
+				.println(Colors.WHITE_BACKGROUND.get() + Colors.BLACK_BOLD.get() + "\ncontains()" + Colors.RESET.get());
+		// controlla se un certo valore è nella collection, ritorna booleano
+		// Firma: boolean contains(Object object)
+
+		uccelli.add("falco");
+		uccelli.add("pettirosso");
+		System.out.println("uccelli: " + uccelli);
+		System.out.println("uccelli.contains(\"pettirosso\"): " + uccelli.contains("pettirosso")); // true
+		System.out.println("uccelli.contains(\"cardellino\"): " + uccelli.contains("cardellino")); // false
+
+		// List interface
+		System.out.println(Colors.WHITE_BACKGROUND_BRIGHT.get() + Colors.BLACK_BOLD.get() + "\nList interface"
+				+ Colors.RESET.get());
+		// LIST SI USA QUANDO VUOI UNA COLLECTION ORDINATA CHE PUO' CONTENERE DUPLICATI
+
+		// ArrayList: Array ridimensionabile, ottimo per la ricerca frequente degli
+		// elementi. Cresce automaticamente con l'aggiunta di elementi.
+		// Da utilizzare quando si legge più spesso che scrivere, o con la stessa
+		// frequenza. Ricerche in tempo costante.
+		List<String> arrayList = new ArrayList<>();
+
+		// LinkedList: Implementa List e Queue. Consente operazioni in tempo costante
+		// sia all'inizio che alla fine, ma tempo lineare per indice arbitrario.
+		// Utile come coda. Aggiunta, rimozione e accesso all'inizio e alla fine in
+		// tempo costante.
+		List<String> linkedList = new LinkedList<>();
+
+		// Vector: Implementazione più vecchia, sostituita da ArrayList. Più lento ma
+		// thread-safe. Non raccomandato per il nuovo codice.
+		// Conosciuto per la compatibilità con codice più vecchio.
+		List<String> vectorList = new Vector<>();
+
+		// Stack: Struttura dati per aggiungere e rimuovere elementi dall'alto. Estende
+		// Vector, non raccomandato per il nuovo codice.
+		// Utilizza ArrayDeque al suo posto per uno stack.
+		Deque<String> stack = new ArrayDeque<>();
+
+		 // Aggiunge l'elemento alla fine della lista
+        arrayList.add("SD"); 
+        System.out.println("arrayList.add(\"SD\")-> " + arrayList);
+
+        // Aggiunge l'elemento all'indice specificato, spostando gli altri elementi
+        arrayList.add(0, "NY"); 
+        System.out.println("arrayList.add(0, \"NY\")-> " + arrayList);
+
+        // Sostituisce l'elemento all'indice specificato con uno nuovo
+        arrayList.set(1, "FL"); 
+        System.out.println("arrayList.set(1, \"FL\")-> " + arrayList);
+
+        // Rimuove la prima occorrenza dell'elemento specificato dalla lista
+        arrayList.remove("NY");
+        System.out.println("arrayList.remove(\"NY\")-> " + arrayList);
+
+        // Rimuove l'elemento all'indice specificato dalla lista
+        arrayList.remove(0); 
+        System.out.println("arrayList.remove(0)-> " + arrayList);
+
+        // Esempio di interrogazione della lista:
+
+        // Aggiunge l'elemento alla fine della lista
+        arrayList.add("OH"); 
+        arrayList.add("CO"); 
+        arrayList.add("NJ"); 
+        System.out.println("Lista nuovamente riempita-> " + arrayList);
+
+        // Ottiene l'elemento all'indice specificato
+        String state = arrayList.get(0);
+        System.out.println("arrayList.get(0)(elemento all'indice 0)-> " + state);
+
+        // Ottiene l'indice della prima occorrenza dell'elemento specificato nella lista
+        int indexNJ = arrayList.indexOf("NJ"); 
+        System.out.println("arrayList.indexOf(\"NJ\") (ottiene l'indice del primo \"NJ\")-> " + indexNJ);
+
+        // Ottiene l'indice dell'ultima occorrenza dell'elemento specificato nella lista
+        int lastIndexCO = arrayList.lastIndexOf("CO"); 
+        System.out.println("arrayList.lastIndexOf(\"CO\") (ottiene l'indice dell'ultima \"CO\")-> " + lastIndexCO);
+
+        // Esempio in cui indexOf ritorna -1
+        int indexNotFound = arrayList.indexOf("CA");
+        System.out.println("arrayList.indexOf(\"CA\") (ottiene l'indice di \"CA\")-> " + indexNotFound);
+
+        // Esempio in cui lastIndexOf ritorna -1
+        int lastIndexNotFound = arrayList.lastIndexOf("CA"); 
+        System.out.println("arrayList.lastIndexOf(\"CA\") (ottiene l'ultimo indice di \"CA\")-> " + lastIndexNotFound);
+        
 	}
 
 	// Dichiarazione di metodo statico con parametro di tipo generico
@@ -392,23 +542,4 @@ public class RUN_GenericsAndCollections {
 		System.out.println("Dopo l'applicazione di addSound, la lista è: " + list);
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
