@@ -8,7 +8,10 @@ import java.util.Deque;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.NavigableSet;
+import java.util.Queue;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.Vector;
 
 interface Flyer {
@@ -365,12 +368,15 @@ public class RUN_GenericsAndCollections {
 		// elementi. Cresce automaticamente con l'aggiunta di elementi.
 		// Da utilizzare quando si legge più spesso che scrivere, o con la stessa
 		// frequenza. Ricerche in tempo costante.
+		// PIU'VELOCE PER LEGGERE
+
 		List<String> arrayList = new ArrayList<>();
 
 		// LinkedList: Implementa List e Queue. Consente operazioni in tempo costante
 		// sia all'inizio che alla fine, ma tempo lineare per indice arbitrario.
 		// Utile come coda. Aggiunta, rimozione e accesso all'inizio e alla fine in
 		// tempo costante.
+		// PIU'VELOCE PER TOGLIERE E METTERE
 		List<String> linkedList = new LinkedList<>();
 
 		// Vector: Implementazione più vecchia, sostituita da ArrayList. Più lento ma
@@ -383,54 +389,212 @@ public class RUN_GenericsAndCollections {
 		// Utilizza ArrayDeque al suo posto per uno stack.
 		Deque<String> stack = new ArrayDeque<>();
 
-		 // Aggiunge l'elemento alla fine della lista
-        arrayList.add("SD"); 
-        System.out.println("arrayList.add(\"SD\")-> " + arrayList);
+		// Aggiunge l'elemento alla fine della lista
+		arrayList.add("SD");
+		System.out.println("arrayList.add(\"SD\")-> " + arrayList);
 
-        // Aggiunge l'elemento all'indice specificato, spostando gli altri elementi
-        arrayList.add(0, "NY"); 
-        System.out.println("arrayList.add(0, \"NY\")-> " + arrayList);
+		// Aggiunge l'elemento all'indice specificato, spostando gli altri elementi
+		arrayList.add(0, "NY");
+		System.out.println("arrayList.add(0, \"NY\")-> " + arrayList);
 
-        // Sostituisce l'elemento all'indice specificato con uno nuovo
-        arrayList.set(1, "FL"); 
-        System.out.println("arrayList.set(1, \"FL\")-> " + arrayList);
+		// Sostituisce l'elemento all'indice specificato con uno nuovo
+		arrayList.set(1, "FL");
+		System.out.println("arrayList.set(1, \"FL\")-> " + arrayList);
 
-        // Rimuove la prima occorrenza dell'elemento specificato dalla lista
-        arrayList.remove("NY");
-        System.out.println("arrayList.remove(\"NY\")-> " + arrayList);
+		// Rimuove la prima occorrenza dell'elemento specificato dalla lista
+		arrayList.remove("NY");
+		System.out.println("arrayList.remove(\"NY\")-> " + arrayList);
 
-        // Rimuove l'elemento all'indice specificato dalla lista
-        arrayList.remove(0); 
-        System.out.println("arrayList.remove(0)-> " + arrayList);
+		// Rimuove l'elemento all'indice specificato dalla lista
+		arrayList.remove(0);
+		System.out.println("arrayList.remove(0)-> " + arrayList);
 
-        // Esempio di interrogazione della lista:
+		// Esempio di interrogazione della lista:
 
-        // Aggiunge l'elemento alla fine della lista
-        arrayList.add("OH"); 
-        arrayList.add("CO"); 
-        arrayList.add("NJ"); 
-        System.out.println("Lista nuovamente riempita-> " + arrayList);
+		// Aggiunge l'elemento alla fine della lista
+		arrayList.add("OH");
+		arrayList.add("CO");
+		arrayList.add("NJ");
+		System.out.println("Lista nuovamente riempita-> " + arrayList);
 
-        // Ottiene l'elemento all'indice specificato
-        String state = arrayList.get(0);
-        System.out.println("arrayList.get(0)(elemento all'indice 0)-> " + state);
+		// Ottiene l'elemento all'indice specificato
+		String state = arrayList.get(0);
+		System.out.println("arrayList.get(0)(elemento all'indice 0)-> " + state);
 
-        // Ottiene l'indice della prima occorrenza dell'elemento specificato nella lista
-        int indexNJ = arrayList.indexOf("NJ"); 
-        System.out.println("arrayList.indexOf(\"NJ\") (ottiene l'indice del primo \"NJ\")-> " + indexNJ);
+		// Ottiene l'indice della prima occorrenza dell'elemento specificato nella lista
+		int indexNJ = arrayList.indexOf("NJ");
+		System.out.println("arrayList.indexOf(\"NJ\") (ottiene l'indice del primo \"NJ\")-> " + indexNJ);
 
-        // Ottiene l'indice dell'ultima occorrenza dell'elemento specificato nella lista
-        int lastIndexCO = arrayList.lastIndexOf("CO"); 
-        System.out.println("arrayList.lastIndexOf(\"CO\") (ottiene l'indice dell'ultima \"CO\")-> " + lastIndexCO);
+		// Ottiene l'indice dell'ultima occorrenza dell'elemento specificato nella lista
+		int lastIndexCO = arrayList.lastIndexOf("CO");
+		System.out.println("arrayList.lastIndexOf(\"CO\") (ottiene l'indice dell'ultima \"CO\")-> " + lastIndexCO);
 
-        // Esempio in cui indexOf ritorna -1
-        int indexNotFound = arrayList.indexOf("CA");
-        System.out.println("arrayList.indexOf(\"CA\") (ottiene l'indice di \"CA\")-> " + indexNotFound);
+		// Esempio in cui indexOf ritorna -1
+		int indexNotFound = arrayList.indexOf("CA");
+		System.out.println("arrayList.indexOf(\"CA\") (ottiene l'indice di \"CA\")-> " + indexNotFound);
 
-        // Esempio in cui lastIndexOf ritorna -1
-        int lastIndexNotFound = arrayList.lastIndexOf("CA"); 
-        System.out.println("arrayList.lastIndexOf(\"CA\") (ottiene l'ultimo indice di \"CA\")-> " + lastIndexNotFound);
-        
+		// Esempio in cui lastIndexOf ritorna -1
+		int lastIndexNotFound = arrayList.lastIndexOf("CA");
+		System.out.println("arrayList.lastIndexOf(\"CA\") (ottiene l'ultimo indice di \"CA\")-> " + lastIndexNotFound);
+
+		// Set interface
+		System.out.println(Colors.WHITE_BACKGROUND_BRIGHT.get() + Colors.BLACK_BOLD.get() + "\nSet interface"
+				+ Colors.RESET.get());
+		// SI USA SET QUANDO NON VUOI DUPLICATI E NON TI INTERESSA L'ORDINE
+
+		// HashSet: Mette gli elementi in unas HashTable, ciò significa che usa il
+		// metodo hashCode degli oggetti per recuperarli più efficientemente
+		// hashCode: numero che mette le istanze di una classe in un numero finito di
+		// categorie, rendendo più facile accedervi)
+		// è il più usato, perdi l'ordinamento ma è molto veloce
+
+		Set<Integer> hashSet = new HashSet<>();
+		System.out.println("hashSet.add(66)->" + hashSet.add(66)); // true
+		System.out.println("hashSet.add(10)->" + hashSet.add(10)); // true
+		System.out.println("hashSet.add(66)->" + hashSet.add(66)); // false(doppione)
+		System.out.println("hashSet.add(8)->" + hashSet.add(8)); // true
+		System.out.print("hashSet(66 non è stato aggiunto la seconda volta): ");
+		for (Integer integer : hashSet)
+			System.out.print(integer + ","); // 66,8,10
+
+		// TreeSet: Struttura ad alber, ordinato. Aggiungere e legere elementi è sempre
+		// più lento.
+		// Implementa NavigableSet, che permette di suddividere la collezione
+
+		NavigableSet<Integer> treeSet = new TreeSet<>();
+		// TreeSet<Integer> treeSet = new TreeSet<>(); STESSA COSA
+
+		for (int i = 1; i <= 20; i++)
+			treeSet.add(i);
+		System.out.println("\nNavigable TreeSet:" + treeSet);
+		// E lower(E e): ritorna l'elemento più grande minore di e, se non c'è torna
+		// null
+		System.out.println("treeSet.lower(10)-> " + treeSet.lower(10)); // 9
+		// E lower(E e): ritorna l'elemento più grande minore o uguale e, se non c'è
+		// torna null
+		System.out.println("treeSet.floor(10)-> " + treeSet.floor(10)); // 10
+		// E lower(E e): ritorna l'elemento più piccolo maggiore o uguale e, se non c'è
+		// torna null
+		System.out.println("treeSet.ceiling(20)-> " + treeSet.ceiling(20)); // 20
+		// E lower(E e): ritorna l'elemento più piccolo maggiore a e, se non c'è
+		// torna null
+		System.out.println("treeSet.higher(20)-> " + treeSet.higher(20)); // null
+		// subSet: ritorna gli elementi compresi tra i due valori (primo compreso
+		// secondo escluso)
+		System.out.println("treeSet.subSet(12, 18)-> " + treeSet.subSet(12, 18));
+
+		// Queue, Deque e Stack con ArrayDeque
+		System.out.println(Colors.WHITE_BACKGROUND_BRIGHT.get() + Colors.BLACK_BOLD.get()
+		        + "\nQueue, Deque e Stack con ArrayDeque" + Colors.RESET.get());
+
+		// Definizioni:
+		// - Queue: Una coda (Queue) è una struttura dati che segue l'approccio FIFO
+		// (First-In, First-Out). Gli elementi vengono aggiunti alla fine (back) e
+		// rimossi dall'inizio (front) della coda. (A volte LIFO)
+		// - Deque: Una double-ended queue (Deque) è una struttura dati che consente
+		// l'aggiunta e la rimozione di elementi sia dalla fine che dall'inizio della
+		// coda. Può essere utilizzata come una coda o uno stack. La pronuncia corretta
+		// è "deck".
+		// - Stack: Uno stack è una struttura dati che segue l'approccio LIFO (Last-In,
+		// First-Out). Gli elementi vengono aggiunti e rimossi sempre dalla stessa
+		// estremità, chiamata "top" in uno stack.
+
+		// Differenza tra un ArrayDeque come stack o come coda:
+		// una coda è simile a una fila di persone. Si entra in coda sul retro e si esce
+		// dall'avanti.
+		// Uno stack è simile a una pila di piatti. Metti il piatto in cima e lo togli
+		// dalla cima. Poiché lo stack è implementato utilizzando ArrayDeque, ci
+		// riferiamo a "top" e "front" in modo intercambiabile
+
+		// Utilizzo di Queue con ArrayDeque
+		Queue<Integer> queue = new ArrayDeque<>();
+		System.out.println("Coda vuota: " + queue);
+
+		// Metodi principali per Queue:
+		// - add(E e): aggiunge un elemento in coda e ritorna true, altrimenti lancia
+		// un'eccezione
+		System.out.println("queue.add(1) -> " + queue.add(1));
+		System.out.println("queue.add(2) -> " + queue.add(2)); // true
+		System.out.println("Coda ora: " + queue);
+
+		// - element(): ritorna il prossimo elemento senza rimuoverlo(FIRST-OUT nel
+		// FIFO), altrimenti lancia un'eccezione
+		System.out.println("queue.element() -> " + queue.element());
+
+		// - offer(E e): aggiunge un elemento in coda e ritorna true o false (come
+		// add(), ma senza eccezioni)
+		System.out.println("queue.offer(10) -> " + queue.offer(10)); // true
+		System.out.println("queue.offer(4) -> " + queue.offer(4)); // true
+		System.out.println("Coda ora: " + queue);
+
+		// - remove(): rimuove e ritorna il prossimo elemento (FIRST-OUT nel FIFO)
+		System.out.println("queue.remove() -> " + queue.remove());
+		System.out.println("Coda ora: " + queue);
+
+		// - peek(): restituisce il prossimo elemento senza rimuoverlo, altrimenti
+		// ritona NULL
+		System.out.println("queue.peek() -> " + queue.peek());
+
+		// - poll(): rimuove e ritorna il prossimo elemento, restituisce null se vuota
+		System.out.println("queue.poll() -> " + queue.poll());
+		System.out.println("Coda ora: " + queue);
+
+		// Utilizzo di Deque con ArrayDeque (anche come Stack)
+		ArrayDeque<Integer> deque = new ArrayDeque<>();
+		System.out.println("\nDeque vuoto: " + deque);
+
+		// Metodi principali per Deque:
+		// - add(E e): aggiunge un elemento alla fine della deque e ritorna true,
+		// altrimenti lancia un'eccezione
+		System.out.println("deque.add(1) -> " + deque.add(1));
+		System.out.println("deque.add(2) -> " + deque.add(2)); // true
+		System.out.println("Deque ora: " + deque);
+
+		// - element(): ritorna il prossimo elemento senza rimuoverlo (dal front nella
+		// deque, FIRST-OUT nel FIFO)
+		System.out.println("deque.element() -> " + deque.element());
+
+		// - offer(E e): aggiunge un elemento alla fine della deque e ritorna true o
+		// false (come add(), ma senza eccezioni)
+		System.out.println("deque.offer(10) -> " + deque.offer(10)); // true
+		System.out.println("deque.offer(4) -> " + deque.offer(4)); // true
+		System.out.println("Deque ora: " + deque);
+
+		// - remove(): rimuove e ritorna il prossimo elemento (dal front nella deque,
+		// FIRST-OUT nel FIFO)
+		System.out.println("deque.remove() -> " + deque.remove());
+		System.out.println("Deque ora: " + deque);
+
+		// - push(E e): aggiunge un elemento all'inizio della deque (come offer(), ma
+		// all'inizio)
+		deque.push(5);
+		System.out.println("Deque dopo push(5) -> " + deque);
+
+		// - pop(): rimuove e ritorna il prossimo elemento dall'inizio della deque (come
+		// poll(), ma all'inizio)
+		System.out.println("deque.pop() -> " + deque.pop());
+		System.out.println("Deque ora: " + deque);
+
+		// Metodi aggiuntivi per Deque (anche per Queue):
+		// - peek(): restituisce il prossimo elemento senza rimuoverlo (dal front nella
+		// deque)
+		System.out.println("deque.peek() -> " + deque.peek());
+
+		// - poll(): rimuove e ritorna il prossimo elemento dall'inizio della deque,
+		// restituisce null se vuota
+		System.out.println("deque.poll() -> " + deque.poll());
+		System.out.println("Deque ora: " + deque);
+
+		// Nota: Non è possibile utilizzare push nè pop sulla Queue in quanto è
+		// un'operazione
+		// specifica dello Stack e Deque.
+		// La seguente riga causerebbe un errore di compilazione:
+		// queue.push(3); // Errore di compilazione
+
+		// IN SOSTANZA, per accedere/aggiungere elementi:
+		// LIFO (stack(deque))-> push/poll/peek
+		// FIFO (single-ended-queue)-> offer/poll/peek
+
 	}
 
 	// Dichiarazione di metodo statico con parametro di tipo generico
