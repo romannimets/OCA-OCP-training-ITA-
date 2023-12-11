@@ -1,4 +1,5 @@
 package genericsAndCollections;
+
 public enum Colors {
     RESET("\033[0m"),
 
