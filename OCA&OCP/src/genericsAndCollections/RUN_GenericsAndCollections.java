@@ -14,6 +14,14 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.Vector;
 
+import genericsAndCollections.classes.Cassa;
+import genericsAndCollections.classes.CassaConLimiteDimensioni;
+import genericsAndCollections.classes.CassaShippable;
+import genericsAndCollections.classes.CassaShippableAbstract;
+import genericsAndCollections.classes.CassaShippablePerElefante;
+import genericsAndCollections.classes.Elefante;
+import utils.Colors;
+
 interface Flyer {
 	void fly();
 }

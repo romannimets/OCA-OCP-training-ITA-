@@ -2,7 +2,24 @@ package designPatternsAndPrinciples;
 
 import java.util.function.Predicate;
 
-import genericsAndCollections.Colors;
+import designPatternsAndPrinciples.classes.AllenatoreLama;
+import designPatternsAndPrinciples.classes.Animale2;
+import designPatternsAndPrinciples.classes.Aquila;
+import designPatternsAndPrinciples.classes.Balena;
+import designPatternsAndPrinciples.classes.Delfino;
+import designPatternsAndPrinciples.classes.DepositoFienoSingleton;
+import designPatternsAndPrinciples.classes.Lemure;
+import designPatternsAndPrinciples.classes.Leone;
+import designPatternsAndPrinciples.classes.Oceanografo;
+import designPatternsAndPrinciples.classes.Primate;
+import designPatternsAndPrinciples.classes.Rana;
+import designPatternsAndPrinciples.classes.Tigre;
+import designPatternsAndPrinciples.interfaces.CheckCaratteristica;
+import designPatternsAndPrinciples.interfaces.HaLaCoda;
+import designPatternsAndPrinciples.interfaces.Volo;
+import utils.Colors;
+
+
 
 public class RUN_DesignPatternAndPrinciples {
 	public static void main(String[] args) {

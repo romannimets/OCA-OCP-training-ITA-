@@ -1,6 +1,6 @@
 package functionalProgramming;
 
-import genericsAndCollections.Colors;
+import utils.Colors;
 
 public class RUN_FunctionalProgramming {
 
