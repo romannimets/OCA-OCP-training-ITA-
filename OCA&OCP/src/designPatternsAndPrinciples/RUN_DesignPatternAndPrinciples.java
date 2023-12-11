@@ -19,8 +19,6 @@ import designPatternsAndPrinciples.interfaces.HaLaCoda;
 import designPatternsAndPrinciples.interfaces.Volo;
 import utils.Colors;
 
-
-
 public class RUN_DesignPatternAndPrinciples {
 	public static void main(String[] args) {
 		// Design Patterns and Principles
@@ -260,6 +258,8 @@ public class RUN_DesignPatternAndPrinciples {
 		System.out.println("\n" + Colors.WHITE_BACKGROUND_BRIGHT.get() + Colors.BLACK_BOLD.get() + "Singleton Pattern"
 				+ Colors.RESET.get());
 
+		System.err.println("\nEsempio implementazione Singleton:\n");
+
 		// Implementazione del pattern Singleton per la gestione dell'approvvigionamento
 		// di fieno
 
@@ -279,7 +279,7 @@ public class RUN_DesignPatternAndPrinciples {
 		System.out.println("Quantità di fieno prima dell'alimentazione dei lama: " + quantitaPrimaAlimentazione);
 
 		// Alimentazione dei lama tramite il Singleton DepositoFieno
-		AllenatoreLama allenatoreLama = new AllenatoreLama(); //v.impl.
+		AllenatoreLama allenatoreLama = new AllenatoreLama(); // v.impl.
 		boolean alimentatiConSuccesso = allenatoreLama.alimentaLama(3);
 
 		// Verifica della quantità di fieno dopo l'alimentazione dei lama
@@ -302,9 +302,8 @@ public class RUN_DesignPatternAndPrinciples {
 		 * dell'istanza:
 		 */
 
-		
-		System.out.println("\nSingleton con blocco di inizializzazione statica:\n");
-		
+		System.err.println("\nSingleton con blocco di inizializzazione statica:\n");
+
 		// Esempio di istanziazione di un Singleton tramite blocco di inizializzazione
 		// statica
 		class StaffRegisterExample {
@@ -341,18 +340,73 @@ public class RUN_DesignPatternAndPrinciples {
 		// Ora puoi chiamare i metodi sulla tua istanza staffRegister se ce ne sono
 		// System.out.println(staffRegister.metodo());
 
-//		A differenza della classe DepositoFieno, la classe StaffRegister istanzia il singleton come parte
-//		   di un blocco di inizializzazione statica. Concettualmente, queste due implementazioni sono equivalenti,
-//		   poiché entrambe creano il singleton quando la classe viene caricata. Tuttavia, il blocco di inizializzazione
-//		   statica consente di eseguire passaggi aggiuntivi per configurare il singleton dopo la creazione.
-//		   Inoltre, consente di gestire i casi in cui il costruttore di StaffRegister genera un'eccezione.
-//		   Poiché il singleton viene creato quando la classe viene caricata, possiamo marcare il riferimento
-//		   come finale, garantendo che venga creata solo un'istanza all'interno della nostra applicazione.
-//
-//		   I singletons sono utilizzati in situazioni in cui è necessario accedere a un singolo insieme di dati
-//		   in tutta l'applicazione. Ad esempio, i dati di configurazione dell'applicazione e le cache di dati
-//		   riutilizzabili sono comunemente implementati utilizzando i singletons. I singletons possono anche essere
-//		   utilizzati per coordinare l'accesso a risorse condivise, come coordinare l'accesso in scrittura a un file.
+		// A differenza della classe DepositoFieno, la classe StaffRegister istanzia il
+		// singleton come parte
+		// di un blocco di inizializzazione statica. Concettualmente, queste due
+		// implementazioni sono equivalenti,
+		// poiché entrambe creano il singleton quando la classe viene caricata.
+		// Tuttavia, il blocco di inizializzazione
+		// statica consente di eseguire passaggi aggiuntivi per configurare il singleton
+		// dopo la creazione.
+		// Inoltre, consente di gestire i casi in cui il costruttore di StaffRegister
+		// genera un'eccezione.
+		// Poiché il singleton viene creato quando la classe viene caricata, possiamo
+		// marcare il riferimentocome final, garantendo che venga creata solo un'istanza
+		// all'interno della nostra applicazione.
+
+		// I singletons sono utilizzati in situazioni in cui è necessario accedere a un
+		// singolo insieme di dati
+		// in tutta l'applicazione. Ad esempio, i dati di configurazione
+		// dell'applicazione e le cache di dati
+		// riutilizzabili sono comunemente implementati utilizzando i singletons. I
+		// singletons possono anche essere
+		// utilizzati per coordinare l'accesso a risorse condivise, come coordinare
+		// l'accesso in scrittura a un file.
+
+		System.err.println("\nSingleton Lazy Inizialization:\n");
+
+		// Singleton Lazy: istanza creata solo alla prima richiesta.
+		// La lazy instantiation riduce il consumo di memoria e migliora le prestazioni
+		// all'avvio dell'applicazione.
+
+		// La lazy instantiation consente di creare un'istanza riutilizzabile solo
+		// quando è richiesta,ottimizzando l'uso della memoria e migliorando le
+		// prestazioni all'avvio.
+
+		// Lazy instantiation
+		class SingletonLazy {
+			private static SingletonLazy instance;
+
+			// Costruttore privato
+			private SingletonLazy() {
+			}
+
+			// Metodo pubblico per ottenere l'istanza del Singleton
+
+			public static SingletonLazy getInstance() {
+				if (instance == null) {
+					System.out.println("Richiesta di ottenere l'istanza del Singleton Lazy.");
+					// Creazione dell'istanza del Singleton solo al momento della richiesta
+					instance = new SingletonLazy(); // NOT THREAD-SAFE!
+					// Eseguire eventuali passaggi aggiuntivi di configurazione del singleton
+					System.out.println("Singleton Lazy istanziato con successo.");
+				}
+				return instance;
+			}
+
+			// Metodi di accesso ai dati
+			// ...
+		}
+
+		// Utilizzo del SingletonLazy
+		SingletonLazy singletonLazyInstance = SingletonLazy.getInstance();
+		System.out.println("Oggetto Singleton Lazy ottenuto con successo.");
+
+		// Lo svantaggio è un possibile ritardo per gli utenti alla prima richiesta di
+		// una risorsa specifica.
+		// Ad esempio, Eclipse mostra un leggero ritardo solo la prima volta che apri un
+		// file Java,
+		// ottimizzando successivamente le prestazioni.
 
 	}
 
