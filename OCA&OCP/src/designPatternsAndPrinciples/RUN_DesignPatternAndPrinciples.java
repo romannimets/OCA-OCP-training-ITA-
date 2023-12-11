@@ -256,9 +256,6 @@ public class RUN_DesignPatternAndPrinciples {
 		Lemure lemure4 = (Lemure) prim;
 		System.out.println(lemure4.age);
 
-		String s = "   ca sd   ";
-		System.out.println(s.trim());
-
 		// Singleton Pattern
 		System.out.println("\n" + Colors.WHITE_BACKGROUND_BRIGHT.get() + Colors.BLACK_BOLD.get() + "Singleton Pattern"
 				+ Colors.RESET.get());
