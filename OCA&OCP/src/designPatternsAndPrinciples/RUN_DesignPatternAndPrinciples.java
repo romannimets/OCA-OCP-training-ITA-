@@ -1,9 +1,12 @@
 package designPatternsAndPrinciples;
 
+import java.util.Iterator;
+import java.util.List;
 import java.util.function.Predicate;
 
 import designPatternsAndPrinciples.classes.AllenatoreLama;
 import designPatternsAndPrinciples.classes.Animale2;
+import designPatternsAndPrinciples.classes.AnimaleImmutabile;
 import designPatternsAndPrinciples.classes.Aquila;
 import designPatternsAndPrinciples.classes.Balena;
 import designPatternsAndPrinciples.classes.Delfino;
@@ -137,8 +140,11 @@ public class RUN_DesignPatternAndPrinciples {
 		// NON E' NECESSARIO CREARE A MANO INTERFACCE FUNZIONALI COME
 		// CheckCaratteristica. Ne esistono già pronte, come l'interfaccia PREDICATE
 
-		// usiamola direttamente qui sotto in una lambda (vedi impl. del metodo stampa2:
+		// usiamola direttamente qui sotto in una lambda (vedi impl. del metodo
+		// stampa2):
 		stampa2(pesce, p -> p.puoNuotare());
+		// oppures così con method reference
+		stampa2(pesce, Animale2::puoNuotare);
 
 		// sintassi con definizione del predicate direttamente qui
 		stampa2(pesce, new Predicate<Animale2>() {
@@ -383,11 +389,12 @@ public class RUN_DesignPatternAndPrinciples {
 
 			// Metodo pubblico per ottenere l'istanza del Singleton
 
+			// (aggiungendo synchronized qui sarebbe stato thread safe)
 			public static SingletonLazy getInstance() {
 				if (instance == null) {
 					System.out.println("Richiesta di ottenere l'istanza del Singleton Lazy.");
 					// Creazione dell'istanza del Singleton solo al momento della richiesta
-					instance = new SingletonLazy(); // NOT THREAD-SAFE!
+					instance = new SingletonLazy(); // NOT THREAD-SAFE! (senza sysynchronized)
 					// Eseguire eventuali passaggi aggiuntivi di configurazione del singleton
 					System.out.println("Singleton Lazy istanziato con successo.");
 				}
@@ -408,7 +415,39 @@ public class RUN_DesignPatternAndPrinciples {
 		// file Java,
 		// ottimizzando successivamente le prestazioni.
 
+		// Immutable Objects
+		System.out.println("\n" + Colors.WHITE_BACKGROUND_BRIGHT.get() + Colors.BLACK_BOLD.get() + "Immutable Objects"
+				+ Colors.RESET.get());
+
+		System.err.println("\nEsempio di oggetto immutabile:\n");
+
+		try {
+			// Creazione di un'istanza di AnimaleImmutabile
+			AnimaleImmutabile animaleImmutabile = new AnimaleImmutabile("Leone", 5, List.of("Carne", "Acqua"));// (v.impl
+																												// AnimaleImmutabile)
+
+			// Stampare le proprietà dell'animale immutabile
+			System.out.println("Specie: " + animaleImmutabile.getSpecie());
+			System.out.println("Età: " + animaleImmutabile.getEta());
+			System.out.print(animaleImmutabile.getConteggioCibiPreferiti() + " Cibi preferiti: ");
+			System.out.print(" [ ");
+			for (int i = 0; i < animaleImmutabile.getConteggioCibiPreferiti(); i++) {
+				System.out.print(animaleImmutabile.getCiboPreferito(i)+" ");
+			}
+			System.out.print("] ");
+
+			// Tentativo di modificare lo stato immutabile - NON COMPILA
+			// animaleImmutabile.setSpecie("Tigre");
+
+			  // Tentativo di passare una lista nulla - Genererà un'eccezione
+		    AnimaleImmutabile animaleiImmutabile2 = new AnimaleImmutabile("Tigre", 3, null);
+		
+		} catch (Exception e) {
+			System.err.println("\nErrore durante la creazione dell'AnimaleImmutabile: " + e.getMessage());
+		}
 	}
+	
+	
 
 	// V. impl di CheckCaratteristica (@FunctionalInterface)
 	// Implementazione del metodo 'stampa' che accetta un oggetto Animale2 e un
