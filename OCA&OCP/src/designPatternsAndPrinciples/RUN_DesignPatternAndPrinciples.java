@@ -12,6 +12,8 @@ import designPatternsAndPrinciples.classes.AnimaleImmutabile;
 import designPatternsAndPrinciples.classes.AnimaleImmutabileBuilder;
 import designPatternsAndPrinciples.classes.Aquila;
 import designPatternsAndPrinciples.classes.Balena;
+import designPatternsAndPrinciples.classes.Cibo;
+import designPatternsAndPrinciples.classes.CiboFactory;
 import designPatternsAndPrinciples.classes.Delfino;
 import designPatternsAndPrinciples.classes.DepositoFienoSingleton;
 import designPatternsAndPrinciples.classes.Lemure;
@@ -489,7 +491,7 @@ public class RUN_DesignPatternAndPrinciples {
 		}
 		System.out.print("] ");
 
-		//Builder pattern
+		// Builder pattern
 		System.out.println("\n\n" + Colors.WHITE_BACKGROUND_BRIGHT.get() + Colors.BLACK_BOLD.get() + "Builder pattern"
 				+ Colors.RESET.get());
 
@@ -505,13 +507,13 @@ public class RUN_DesignPatternAndPrinciples {
 		// attraverso un oggetto builder, spesso tramite concatenazione di metodi,
 		// e l'oggetto viene creato con una chiamata finale al metodo di build.
 		// Questo pattern è utile per oggetti immutabili e anche per quelli mutabili.
-		
-		AnimaleImmutabileBuilder canguroBuilder = new AnimaleImmutabileBuilder(); //v. impl del Builder
-	
-		canguroBuilder.setEta(6).setSpecie("Canguro").setCibiPreferiti(Arrays.asList("erbette", "frutta", "foglie"));		
-		
+
+		AnimaleImmutabileBuilder canguroBuilder = new AnimaleImmutabileBuilder(); // v. impl del Builder
+
+		canguroBuilder.setEta(6).setSpecie("Canguro").setCibiPreferiti(Arrays.asList("erbette", "frutta", "foglie"));
+
 		AnimaleImmutabile canguro = canguroBuilder.build();
-		
+
 		System.err.println("\nl' oggetto \"canguro\" è stato costruito con il Builder: ");
 		System.out.println("\nSpecie: " + canguro.getSpecie());
 		System.out.println("Età: " + canguro.getEta());
@@ -520,15 +522,55 @@ public class RUN_DesignPatternAndPrinciples {
 		for (int i = 0; i < canguro.getConteggioCibiPreferiti(); i++) {
 			System.out.print(canguro.getCiboPreferito(i) + " ");
 		}
-		System.out.print("] ");		
-		
-		//Factory pattern
+		System.out.print("] ");
+
+		// Factory pattern
 		System.out.println("\n\n" + Colors.WHITE_BACKGROUND_BRIGHT.get() + Colors.BLACK_BOLD.get() + "Factory pattern"
 				+ Colors.RESET.get());
-		
-		
-		
-		
+
+		// Come scrivere del codice che crei degli oggetti il cui tipo preciso non è
+		// noto fino al runtime?
+
+		// Come visto con il pattern del builder, la creazione di oggetti può essere
+		// piuttosto complessa. Serve un modo per incapsulare la creazione degli
+		// oggetti per gestire la complessità della creazione, inclusa la selezione
+		// della sottoclasse da utilizzare, oltre a creare una connessione meno stretta
+		// (loose coupling) con
+		// l'implementazione sottostante della creazione.
+
+		// Il factory pattern è un pattern creazionale basato sull'idea di utilizzare
+		// una classe factory per produrre istanze di oggetti in base a un insieme di
+		// parametri di input. È simile al
+		// builder pattern, sebbene sia focalizzato sul polimorfismo di classe
+
+		// I factory patterns sono spesso, anche se non sempre, implementati utilizzando
+		// metodi statici che restituiscono oggetti e non richiedono un puntatore a
+		// un'istanza della classe factory. È anche una buona pratica di codifica
+		// aggiungere il suffisso "Factory" al nome della classe, ad esempio
+		// AnimalFactory, ZooFactory, e così via.
+
+		// Immaginiamo uno zookeeper che deve nutrire una varietà di animali nello zoo
+		// con tipi diversi di cibo. Alcuni animali mangiano cibo specifico, mentre
+		// altri condividono lo stesso tipo di cibo. Inoltre, a ogni distribuzione di
+		// cibo a un animale è associato un valore di quantità.
+
+		// Utilizzo della factory per ottenere un oggetto Cibo associato a un
+		// determinato animale
+		final Cibo cibo = CiboFactory.getCibo("orso polare"); // (v. impl CiboFactory)
+		System.out.print("orso polare-> ");
+		cibo.mangiato();
+		final Cibo cibo2 = CiboFactory.getCibo("coniglio"); // (v. impl CiboFactory)
+		System.out.print("coniglio-> ");
+		cibo2.mangiato();
+
+		// NON COMPILA: UnsupportedOperationException: ANIMALE NON SUPPORTATO: petauro
+		// dello zucchero
+		// final Cibo cibo3 = CiboFactory.getCibo("petauro dello zucchero");
+
+		// Si può vedere come il factory pattern può essere utilizzato per creare
+		// oggetti in modo flessibile e polimorfico, consentendo di interagire con cibo
+		// di diversi tipi senza doverne conoscere l'implementazione specifica.
+
 	}
 
 	// V. impl di CheckCaratteristica (@FunctionalInterface)
