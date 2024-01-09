@@ -1,5 +1,7 @@
 package designPatternsAndPrinciples;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
@@ -7,6 +9,7 @@ import java.util.function.Predicate;
 import designPatternsAndPrinciples.classes.AllenatoreLama;
 import designPatternsAndPrinciples.classes.Animale2;
 import designPatternsAndPrinciples.classes.AnimaleImmutabile;
+import designPatternsAndPrinciples.classes.AnimaleImmutabileBuilder;
 import designPatternsAndPrinciples.classes.Aquila;
 import designPatternsAndPrinciples.classes.Balena;
 import designPatternsAndPrinciples.classes.Delfino;
@@ -432,22 +435,93 @@ public class RUN_DesignPatternAndPrinciples {
 			System.out.print(animaleImmutabile.getConteggioCibiPreferiti() + " Cibi preferiti: ");
 			System.out.print(" [ ");
 			for (int i = 0; i < animaleImmutabile.getConteggioCibiPreferiti(); i++) {
-				System.out.print(animaleImmutabile.getCiboPreferito(i)+" ");
+				System.out.print(animaleImmutabile.getCiboPreferito(i) + " ");
 			}
 			System.out.print("] ");
 
 			// Tentativo di modificare lo stato immutabile - NON COMPILA
 			// animaleImmutabile.setSpecie("Tigre");
 
-			  // Tentativo di passare una lista nulla - Genererà un'eccezione
-		    AnimaleImmutabile animaleiImmutabile2 = new AnimaleImmutabile("Tigre", 3, null);
-		
+			// Tentativo di passare una lista nulla - Genererà un'eccezione
+			AnimaleImmutabile animaleiImmutabile2 = new AnimaleImmutabile("Tigre", 3, null);
+
 		} catch (Exception e) {
 			System.err.println("\nErrore durante la creazione dell'AnimaleImmutabile: " + e.getMessage());
 		}
+
+		// Modificare un oggetto immutabile
+		System.out.println("\n" + Colors.WHITE_BACKGROUND_BRIGHT.get() + Colors.BLACK_BOLD.get()
+				+ "Modificare Oggetti immutabili (usando una copia)" + Colors.RESET.get());
+
+		System.err.println("\nEsempio di oggetto immutabile:\n");
+
+		AnimaleImmutabile pantera = new AnimaleImmutabile("Pantera", 5, List.of("Carne", "Acqua"));
+		System.out.println("Specie: " + pantera.getSpecie());
+		System.out.println("Età: " + pantera.getEta());
+		System.out.print(pantera.getConteggioCibiPreferiti() + " Cibi preferiti: ");
+		System.out.print(" [ ");
+		for (int i = 0; i < pantera.getConteggioCibiPreferiti(); i++) {
+			System.out.print(pantera.getCiboPreferito(i) + " ");
+		}
+		System.out.print("] ");
+
+		// Come posso modificare l'oggetto animaleImmutabile appena creato?
+		System.out.println("\n\nCome posso modificare l'oggetto animaleImmutabile appena creato?");
+		System.out.println("E' necessario creare una coppia di animaleImmutabile e lavorare su questa, l'originale "
+				+ "NON SI PUO' MODIFICARE (vedi classe AnimaleImmutabile");
+		// creazione della copia della lista cibiPreferiti per la creazione dell'oggetto
+		// copia modificato
+		List<String> cibiPrefe = new ArrayList<String>();
+		for (int i = 0; i < pantera.getConteggioCibiPreferiti(); i++) {
+			cibiPrefe.add(pantera.getCiboPreferito(i));
+		}
+
+		// Creazione del nuovo animaleImmutabile ma con l'età modificata
+		AnimaleImmutabile panteraAggiornata = new AnimaleImmutabile(pantera.getSpecie(), pantera.getEta() + 1,
+				cibiPrefe);
+		System.err.println("\nl' oggetto \"panteraAggiornata\" è la copia di pantera (immutabile)");
+		System.out.println("\nSpecie: " + panteraAggiornata.getSpecie());
+		System.out.println("Età: " + panteraAggiornata.getEta());
+		System.out.print(panteraAggiornata.getConteggioCibiPreferiti() + " Cibi preferiti: ");
+		System.out.print(" [ ");
+		for (int i = 0; i < panteraAggiornata.getConteggioCibiPreferiti(); i++) {
+			System.out.print(panteraAggiornata.getCiboPreferito(i) + " ");
+		}
+		System.out.print("] ");
+
+		//Builder pattern
+		System.out.println("\n\n" + Colors.WHITE_BACKGROUND_BRIGHT.get() + Colors.BLACK_BOLD.get() + "Builder pattern"
+				+ Colors.RESET.get());
+
+		// Come creare un oggetto che necessita che tante proprietà siano valorizzate al
+		// momento dekll'instanziazione?
+
+		// La motivazione dietro l'uso di questo pattern è evitare la crescita e la
+		// gestione complessa del costruttore, specialmente quando gli attributi
+		// dell'oggetto sono numerosi. Questo è particolarmente importante per gli
+		// oggetti immutabili, dove i setter non sono disponibili.
+
+		// Utilizziamo il Builder Pattern, un pattern creazionale, che passa i parametri
+		// attraverso un oggetto builder, spesso tramite concatenazione di metodi,
+		// e l'oggetto viene creato con una chiamata finale al metodo di build.
+		// Questo pattern è utile per oggetti immutabili e anche per quelli mutabili.
+		
+		AnimaleImmutabileBuilder canguroBuilder = new AnimaleImmutabileBuilder(); //v. impl del Builder
+	
+		canguroBuilder.setEta(6).setSpecie("Canguro").setCibiPreferiti(Arrays.asList("erbette", "frutta", "foglie"));		
+		
+		AnimaleImmutabile canguro = canguroBuilder.build();
+		
+		System.err.println("\nl' oggetto \"canguro\" è stato costruito con il Builder: ");
+		System.out.println("\nSpecie: " + canguro.getSpecie());
+		System.out.println("Età: " + canguro.getEta());
+		System.out.print(canguro.getConteggioCibiPreferiti() + " Cibi preferiti: ");
+		System.out.print(" [ ");
+		for (int i = 0; i < canguro.getConteggioCibiPreferiti(); i++) {
+			System.out.print(canguro.getCiboPreferito(i) + " ");
+		}
+		System.out.print("] ");		
 	}
-	
-	
 
 	// V. impl di CheckCaratteristica (@FunctionalInterface)
 	// Implementazione del metodo 'stampa' che accetta un oggetto Animale2 e un

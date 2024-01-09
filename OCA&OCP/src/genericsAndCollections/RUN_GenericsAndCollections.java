@@ -465,7 +465,7 @@ public class RUN_GenericsAndCollections {
 		for (Integer integer : hashSet)
 			System.out.print(integer + ","); // 66,8,10
 
-		// TreeSet: Struttura ad alber, ordinato. Aggiungere e legere elementi è sempre
+		// TreeSet: Struttura ad albero, ordinato. Aggiungere e legere elementi è sempre
 		// più lento.
 		// Implementa NavigableSet, che permette di suddividere la collezione
 
