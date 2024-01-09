@@ -1,5 +1,4 @@
 # Progetto OCP Java SE 8 Study Guide
-# Guida per l'esecuzione di Maven Target Extractor
 Il progetto OCP (Oracle Certified Professional) è un'applicazione Java divisa in pacchetti, ognuno dedicato a un capitolo del libro "OCP Oracle Certified Professional Java SE 8 Programmer II Study Guide Exam" di Jeanne Boyarsky e Scott Selikoff. Il progetto fornisce esempi commentati in italiano per ogni argomento trattato nel libro, offrendo un comodo riferimento per lo studio di Java 8.
 
 ## Navigazione nel Progetto
