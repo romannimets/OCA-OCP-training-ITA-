@@ -93,7 +93,7 @@ public class RUN_DesignPatternAndPrinciples {
 		// che deve ritornare il risultato del metodo puoVolare() sull'oggetto 'a'.
 
 		// Nell'esempio successivo, la lambda viene utilizzata per testare diverse
-		// caratteristiche degli animali.
+		// caratteristiche degli animali. (v. impl metodo stampa())
 
 		stampa(new Animale2("Pesce", false, true, false), a -> a.puoSaltare());
 		stampa(new Animale2("Canguro", true, false, false), a -> a.puoSaltare());
@@ -521,11 +521,19 @@ public class RUN_DesignPatternAndPrinciples {
 			System.out.print(canguro.getCiboPreferito(i) + " ");
 		}
 		System.out.print("] ");		
+		
+		//Factory pattern
+		System.out.println("\n\n" + Colors.WHITE_BACKGROUND_BRIGHT.get() + Colors.BLACK_BOLD.get() + "Factory pattern"
+				+ Colors.RESET.get());
+		
+		
+		
+		
 	}
 
 	// V. impl di CheckCaratteristica (@FunctionalInterface)
 	// Implementazione del metodo 'stampa' che accetta un oggetto Animale2 e un
-	// oggetto CheckCaratteristica.
+	// oggetto CheckCaratteristica (v.impl).
 	// CheckCaratteristica è un'interfaccia funzionale e viene implementata mediante
 	// la lambda fornita come parametro.
 	// Il metodo test della lambda viene chiamato, passando l'oggetto Animale2, e
