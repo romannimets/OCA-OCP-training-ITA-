@@ -495,7 +495,7 @@ public class RUN_DesignPatternAndPrinciples {
 				+ Colors.RESET.get());
 
 		// Come creare un oggetto che necessita che tante proprietà siano valorizzate al
-		// momento dekll'instanziazione?
+		// momento dell'instanziazione?
 
 		// La motivazione dietro l'uso di questo pattern è evitare la crescita e la
 		// gestione complessa del costruttore, specialmente quando gli attributi

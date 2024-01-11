@@ -36,7 +36,7 @@ public class AnimaleImmutabileBuilder {
 	public AnimaleImmutabile build() {
 		return new AnimaleImmutabile(specie, eta, cibiPreferiti);
 
-		// PERCHE' RENDERE IL COSTGRUTTORE ACCESSIBILE SOLO DAL BUILDER?
+		// PERCHE' RENDERE IL COSTRUTTORE ACCESSIBILE SOLO DAL BUILDER?
 		
 		// Controllo del processo di costruzione: Limitare l'accesso al costruttore alle
 		// classi client significa che l'oggetto può essere costruito solo attraverso il
