@@ -157,9 +157,8 @@ public class RUN_DesignPatternAndPrinciples {
 				return a.puoNuotare();
 			}
 		});
-
 		// Implementing Polymorphism
-		System.out.println("\n" + Colors.GREEN_BACKGROUND_BRIGHT.get() + Colors.BLACK_BOLD.get()
+		System.out.println("\n" + Colors.WHITE_BACKGROUND_BRIGHT.get() + Colors.BLACK_BOLD.get()
 				+ "Implementing Polymorphism" + Colors.RESET.get());
 		// Capacità di una singola interfaccia di supportare forme multiple sottostanti.
 		// In Java possiamo quindi passare vari tipi di oggetti a un singolo metodo o
@@ -573,18 +572,40 @@ public class RUN_DesignPatternAndPrinciples {
 
 	}
 
-	// V. impl di CheckCaratteristica (@FunctionalInterface)
-	// Implementazione del metodo 'stampa' che accetta un oggetto Animale2 e un
-	// oggetto CheckCaratteristica (v.impl).
-	// CheckCaratteristica è un'interfaccia funzionale e viene implementata mediante
-	// la lambda fornita come parametro.
-	// Il metodo test della lambda viene chiamato, passando l'oggetto Animale2, e
-	// viene verificata la caratteristica specificata.
-	private static void stampa(Animale2 animale, CheckCaratteristica caratteristica) {
+	/**
+	 * Metodo che stampa un messaggio indicando se un oggetto di tipo
+	 * {@code Animale2} possiede una caratteristica specificata. Utilizza un'istanza
+	 * di {@code CheckCaratteristica}, un'interfaccia funzionale, la cui
+	 * implementazione viene fornita come parametro attraverso una lambda. Il metodo
+	 * test della lambda viene chiamato passando l'oggetto {@code Animale2}, e la
+	 * presenza della caratteristica specificata viene verificata.
+	 * 
+	 * @param animale        L'oggetto di tipo {@code Animale2} su cui verificare la
+	 *                       caratteristica.
+	 * @param caratteristica Un'istanza di {@code CheckCaratteristica} implementata
+	 *                       mediante una lambda, che definisce la logica per la
+	 *                       verifica della caratteristica dell'animale.
+	 */
+	private static void stampa(Animale2 animale, CheckCaratteristica caratteristica) { // V. impl di CheckCaratteristica
+																						// (@FunctionalInterface)
+
 		if (caratteristica.test(animale))
 			System.out.println(animale + " possiede la caratteristca cercata");
 	}
 
+	/**
+	 * Metodo che stampa un messaggio indicando se un oggetto di tipo
+	 * {@code Animale2} possiede una caratteristica specificata, utilizzando
+	 * l'interfaccia funzionale {@code Predicate<Animale2>}. Il parametro
+	 * {@code caratteristica} rappresenta la condizione da verificare attraverso il
+	 * metodo {@code test} dell'interfaccia {@code Predicate}.
+	 * 
+	 * @param animale        L'oggetto di tipo {@code Animale2} su cui verificare la
+	 *                       caratteristica.
+	 * @param caratteristica Un'istanza di {@code Predicate<Animale2>}, che
+	 *                       rappresenta la condizione da verificare sull'oggetto
+	 *                       {@code Animale2}.
+	 */
 	private static void stampa2(Animale2 animale, Predicate<Animale2> caratteristica) {
 		if (caratteristica.test(animale))
 			System.out.println("(USANDO PREDICATE)" + animale + " possiede la caratteristca cercata");

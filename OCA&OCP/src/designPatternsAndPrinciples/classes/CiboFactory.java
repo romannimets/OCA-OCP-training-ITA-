@@ -1,15 +1,22 @@
 package designPatternsAndPrinciples.classes;
 
-//Classe factory per la creazione di oggetti di tipo Cibo in base al nome dell'animale
+/**
+ * Classe factory per la creazione di oggetti di tipo Cibo in base al nome
+ * dell'animale
+ */
 public class CiboFactory {
-	
-	// Metodo statico che restituisce un oggetto di tipo Cibo in base al nome
-	// dell'animale
-
-	// Nel contesto del pattern factory, l'approccio statico consente di utilizzare
-	// la factory senza dover istanziare la classe CiboFactory, semplificando così
-	// l'utilizzo del metodo getCibo in altre parti del codice senza la necessità di
-	// creare un'istanza dell'oggetto factory.
+	/**
+	 * Metodo statico che restituisce un oggetto di tipo Cibo in base al nome
+	 * dell'animale
+	 * 
+	 * Nel contesto del pattern factory, l'approccio statico consente di utilizzare
+	 * la factory senza dover istanziare la classe CiboFactory, semplificando così
+	 * l'utilizzo del metodo getCibo in altre parti del codice senza la necessità di
+	 * creare un'istanza dell'oggetto factory.
+	 *  
+	 * @param nomeAnimale
+	 * @return Cibo: il cibo appropriato per l'animale
+	 */
 	public static Cibo getCibo(String nomeAnimale) {
 
 		// Utilizza switch case per gestire i diversi casi di animali e restituire il
@@ -27,7 +34,7 @@ public class CiboFactory {
 			// Se il nome dell'animale non corrisponde a nessun caso previsto, solleva
 			// un'eccezione.
 			throw new UnsupportedOperationException("ANIMALE NON SUPPORTATO: " + nomeAnimale);
-			
+
 		}
 	}
 }

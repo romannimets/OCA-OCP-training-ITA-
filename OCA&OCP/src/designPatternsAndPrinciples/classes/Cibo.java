@@ -1,10 +1,13 @@
 package designPatternsAndPrinciples.classes;
 
-//Classe astratta che rappresenta un tipo generico di cibo in un zoo.
-//Ha una proprietà "quantita" per indicare la quantità di cibo disponibile.
-//La classe è progettata secondo il pattern Factory, fornendo un metodo astratto "consumato"
-//che sarà implementato dalle sottoclassi concrete per definire il comportamento specifico
-//quando il cibo viene consumato.
+/**
+ * Classe astratta che rappresenta un tipo generico di cibo in un zoo. Ha una
+ * proprietà "quantita" per indicare la quantità di cibo disponibile. La classe
+ * è progettata secondo il pattern Factory, fornendo un metodo astratto
+ * "consumato" che sarà implementato dalle sottoclassi concrete per definire il
+ * comportamento specifico quando il cibo viene consumato.
+ */
+
 public abstract class Cibo {
 	private int quantita;
 
