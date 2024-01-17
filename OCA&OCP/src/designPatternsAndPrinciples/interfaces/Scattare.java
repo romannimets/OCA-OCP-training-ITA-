@@ -1,38 +1,60 @@
 package designPatternsAndPrinciples.interfaces;
-//è un interfaccia funzionale perchè ha una sola e unica funzione (un singolo metodo astratto)
 
 import designPatternsAndPrinciples.classes.Animale;
 
+/**
+ * L'interfaccia Scattare definisce il comportamento di un oggetto che può eseguire scatti, inseguendo un animale.
+ * Questa è un'interfaccia funzionale poiché contiene un solo metodo astratto.
+ *
+ * @param <Animal> Il tipo di animale che verrà inseguito durante lo scatto.
+ */
 @FunctionalInterface
-public interface Scattare {
-	
-	//accetta un animale che verrà inseguito
-	public void scatta(Animale animale);
+public interface Scattare<Animal extends designPatternsAndPrinciples.classes.Animale> {
+
+    /**
+     * Metodo astratto che rappresenta l'azione di uno scatto veloce, inseguendo un animale.
+     *
+     * @param animale L'animale che viene inseguito durante lo scatto.
+     */
+    void scatta(Animal animale);
 }
 
-//Questa interfaccia non definisce nuovi metodi astratti, ma estende l'interfaccia Sprint.
-//Poiché Sprint ha un solo metodo astratto (sprint()), anche Run è considerata un'interfaccia funzionale.
+//Esempio di interfaccia funzionale estesa da un'interfaccia Run.
+//Run rappresenta l'azione di correre dietro a un animale.
 
 //public interface Run extends Scattare {}
 
-
-//Questa interfaccia estende Sprint e definisce un nuovo metodo astratto sprint(Animal animal).
-//Tuttavia, questo metodo astratto è una ridefinizione del metodo sprint() già presente in Sprint.
-//Poiché il numero totale di metodi astratti nella gerarchia rimane uno, SprintFaster è anch'essa considerata un'interfaccia funzionale.
+//Esempio di interfaccia funzionale con un nuovo metodo astratto.
+//SprintFaster rappresenta l'azione di uno sprint veloce dietro a un animale.
 
 //public interface SprintFaster extends Scattare {
-//public void sprint(Animal animal);
+// /**
+//  * Metodo astratto che rappresenta l'azione di uno sprint veloce, inseguendo un animale.
+//  *
+//  * @param animal L'animale che viene inseguito durante lo sprint.
+//  */
+// void sprint(Animal animal);
 //}
 
-
-//Questa interfaccia estende Sprint e definisce un metodo statico (skip) e un metodo di default (getHopCount).
-//I metodi statici e i metodi di default non sono considerati metodi astratti, poiché forniscono un'implementazione.
-//Quindi, nonostante Skip abbia più di un metodo nella sua dichiarazione, ha solo un metodo astratto (sprint() ereditato da Sprint).
-//Quindi, anche Skip è considerata un'interfaccia funzionale.
+//Esempio di interfaccia funzionale estesa da un'interfaccia Skip.
+//Skip rappresenta l'azione di saltare dietro a un animale, con metodi statici e di default.
 
 //public interface Skip extends Scattare {
-//public default int getHopCount(Kangaroo kangaroo) {return 10;}
-//public static void skip(int speed) {}
+// /**
+//  * Metodo di default che restituisce il numero di salti di un canguro.
+//  *
+//  * @param kangaroo Il canguro di cui si vuole ottenere il numero di salti.
+//  * @return Il numero di salti del canguro.
+//  */
+// default int getHopCount(Kangaroo kangaroo) {
+//     return 10;
+// }
+//
+// /**
+//  * Metodo statico che rappresenta l'azione di saltare con una velocità specifica.
+//  *
+//  * @param speed La velocità con cui si desidera saltare.
+//  */
+// static void skip(int speed) {}
 //}
-
 

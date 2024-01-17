@@ -1,23 +1,40 @@
 package designPatternsAndPrinciples.interfaces;
 
+/**
+ * L'interfaccia Volo definisce il comportamento di un oggetto che può volare.
+ */
 public interface Volo {
 
-	public int getAperturaAlare() throws Exception; // metodo che dichiara un'eccezione. Le regole della programmazione
-													// in Java richiedono che se un'interfaccia dichiara di lanciare
-													// un'eccezione, ogni classe che la implementa deve gestire o
-													// dichiarare l'eccezione nel suo contratto.
+    /**
+     * Restituisce l'apertura alare dell'animale che sta volando.
+     *
+     * @return L'apertura alare dell'animale.
+     * @throws Exception Se si verifica un'eccezione durante il recupero dell'apertura alare.
+     *                   Le classi che implementano questa interfaccia devono gestire o dichiarare questa eccezione.
+     */
+    public int getAperturaAlare() throws Exception;
 
-	public static final int MAX_SPEED = 100; // costante statica disponibili ovunque nell'applicazione
+    /**
+     * Costante statica che rappresenta la velocità massima di volo disponibile in tutta l'applicazione.
+     */
+    public static final int MAX_SPEED = 100;
 
-	public default void atterra() { // Questo è un metodo di default, il che significa che fornisce
-									// un'implementazione di default nel caso in cui una classe che implementa
-									// l'interfaccia non fornisca una sua implementazione.
-		
-		System.out.println("L'animale sta atterrando");
-	}
+    /**
+     * Metodo di default che rappresenta l'azione di atterraggio.
+     * Fornisce un'implementazione di default nel caso in cui una classe che implementa l'interfaccia non fornisca la propria implementazione.
+     */
+    public default void atterra() {
+        System.out.println("L'animale sta atterrando");
+    }
 
-	public static double calcolaVelocita(float spazio, double tempo) { // metodo statico disponibile in tutta
-																		// l'applicazione (NON SI PUO' OVERRIDARE)
-		return spazio / tempo;
-	}
+    /**
+     * Calcola la velocità di volo in base allo spazio percorso e al tempo impiegato.
+     *
+     * @param spazio La distanza percorsa durante il volo.
+     * @param tempo Il tempo impiegato per percorrere la distanza.
+     * @return La velocità di volo calcolata.
+     */
+    public static double calcolaVelocita(float spazio, double tempo) {
+        return spazio / tempo;
+    }
 }

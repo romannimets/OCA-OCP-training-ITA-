@@ -1,24 +1,53 @@
 package genericsAndCollections.classes;
+
+/**
+ * La classe Cassa rappresenta una cassa contenente un oggetto di tipo generico.
+ *
+ * @param <T> Il tipo di oggetto contenuto nella cassa, specificato al momento
+ *            dell'istanziazione.
+ */
 public class Cassa<T> {
-    private T contenuto;
 
-    public T svuotaCassa() {
-        return contenuto;
-    }
+	/**
+	 * Contenuto attuale della cassa.
+	 */
+	private T contenuto;
 
-    public void imballaCassa(T contenuto) {
-        this.contenuto = contenuto;
-    }
+	/**
+	 * Svuota la cassa restituendo il suo contenuto.
+	 *
+	 * @return Il contenuto della cassa.
+	 */
+	public T svuotaCassa() {
+		return contenuto;
+	}
 
+	/**
+	 * Imballa la cassa con il nuovo contenuto specificato.
+	 *
+	 * @param contenuto Il nuovo contenuto da inserire nella cassa.
+	 */
+	public void imballaCassa(T contenuto) {
+		this.contenuto = contenuto;
+	}
+
+	/**
+	 * Ottiene il contenuto attuale della cassa.
+	 *
+	 * @return Il contenuto della cassa.
+	 */
 	public T getContenuto() {
 		return contenuto;
 	}
 
+	/**
+	 * Imposta il contenuto della cassa con il nuovo valore specificato.
+	 *
+	 * @param contenuto Il nuovo contenuto da impostare nella cassa.
+	 */
 	public void setContenuto(T contenuto) {
 		this.contenuto = contenuto;
 	}
-    
-    
 }
 
 //T è un tipo generico, quando si istanzierà T bisognerà specificare al compilatore 

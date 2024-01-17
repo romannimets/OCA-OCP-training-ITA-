@@ -1,22 +1,34 @@
 package designPatternsAndPrinciples.classes;
 
-//Classe concreta che estende Cibo, rappresentando il tipo specifico di cibo "Fieno".
-//Implementa il metodo "consumato" definendo il comportamento quando il fieno viene mangiato.
-//Questa classe fa parte del pattern Factory in quanto fornisce un'implementazione concreta
-//per la creazione di oggetti del tipo Cibo.
+/**
+ * La classe {@code Fieno} rappresenta un tipo specifico di cibo, estendendo la classe astratta {@link Cibo}.
+ * Questa classe fa parte del pattern Factory, fornendo un'implementazione concreta per la creazione di oggetti
+ * del tipo {@code Cibo} specifico per il fieno.
+ * 
+ * <p>Il costruttore di {@code Fieno} richiama il costruttore della classe base ({@code Cibo}) inizializzando la
+ * quantità di fieno.</p>
+ * 
+ * <p>Il metodo {@code mangiato()} è stato implementato per definire il comportamento quando il fieno viene mangiato.
+ * In questo caso, viene stampato un messaggio che indica la quantità di fieno mangiata.</p>
+ * 
+ * @see Cibo
+ */
 public class Fieno extends Cibo {
 
-	// Costruttore che richiama il costruttore della classe base e inizializza la
-	// quantità di fieno.
-	public Fieno(int quantita) {
-		super(quantita);
-	}
-	
-	
-    // Implementazione del metodo astratto "consumato" che stampa un messaggio quando il fieno viene mangiato.
-	@Override
-	public void mangiato() {
-		System.out.println("FIENO mangiato: " + getQuantita());
-	}
+    /**
+     * Costruttore che inizializza la quantità di fieno.
+     * 
+     * @param quantita La quantità di fieno.
+     */
+    public Fieno(int quantita) {
+        super(quantita);
+    }
 
+    /**
+     * Implementa il metodo astratto {@code mangiato()}, stampando un messaggio che indica la quantità di fieno mangiata.
+     */
+    @Override
+    public void mangiato() {
+        System.out.println("FIENO mangiato: " + getQuantita());
+    }
 }
