@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.BiPredicate;
@@ -368,5 +369,71 @@ public class RUN_FunctionalProgramming {
 		// Applicazione del BinaryOperator b2 sulle stringhe "baby " e "chick"
 		System.out.println("Concatenazione con binOp2: " + binOp2.apply("baby ", "chick"));
 
+		System.out.println("\n" + Colors.WHITE_BACKGROUND_BRIGHT.get() + Colors.BLACK_BOLD.get()
+				+ "Gestione di Optional:\n".toUpperCase() + Colors.RESET.get());
+		/**
+		 * Gestione di Optional:
+		 * 
+		 * L'Optional è un tipo introdotto in Java 8 per gestire situazioni in cui un
+		 * risultato potrebbe essere assente. Può essere creato con un valore o vuoto.
+		 * Si tratta di una sorta di "scatola" che potrebbe contenere qualcosa o
+		 * potrebbe essere vuota.
+		 * 
+		 * Nel seguente esempio, viene implementato il metodo average che calcola la
+		 * media di una serie di voti. Se non ci sono voti, viene restituito un Optional
+		 * vuoto.
+		 */
+
+		// Esempio di utilizzo del metodo average con dati validi
+		Optional<Double> averageResult1 = average(90, 100);
+		System.out.println("Media 1: " + averageResult1); // Stampa: Optional[95.0]
+
+		// Esempio di utilizzo del metodo average senza dati
+		Optional<Double> averageResult2 = average(); // v.impl average()
+		System.out.println("Media 2: " + averageResult2); // Stampa: Optional.empty
+
+		// Recupero del valore dalla Optional se presente
+		if (averageResult1.isPresent()) {
+			System.out.println("Media 1 (Valore presente): " + averageResult1.get()); // Stampa: 95.0
+		}
+
+		// Tentativo errato di recuperare il valore da un Optional vuoto
+		try {
+			System.out.println("Media 2 (Valore presente): " + averageResult2.get()); // Lancierà un'eccezione
+		} catch (Exception e) {
+			System.out.println("Errore: " + e.getMessage()); // Stampa: Errore: No value present
+		}
+
+		// Utilizzo del metodo ofNullable per creare un Optional da un valore potenzialmente nullo
+		String stringValue = "Hello, Optional!";
+		Optional<String> optionalString = Optional.ofNullable(stringValue);
+		System.out.println("Optional String: " + optionalString); // Stampa: Optional[Hello, Optional!]
+		
+		// Creazione di un Optional vuoto
+		Optional<String> emptyOptional = Optional.empty();
+		System.out.println("Optional vuoto: " + emptyOptional); // Stampa: Optional.empty
+	}
+
+	/**
+	 * Calcola la media di una serie di voti.
+	 *
+	 * @param scores Array di voti
+	 * @return Optional contenente la media se ci sono voti, Optional vuoto
+	 *         altrimenti
+	 */
+	public static Optional<Double> average(int... scores) {
+		// La sintassi int... nel parametro del metodo average indica un "varargs" di
+		// tipo int.
+		// Quando si dichiara un parametro con int..., significa che il metodo può
+		// accettare un numero variabile di argomenti di tipo int. Gli argomenti forniti
+		// al metodo vengono trattati come un array di int.
+		if (scores.length == 0)
+			return Optional.empty();
+
+		int sum = 0;
+		for (int score : scores) {
+			sum += score;
+		}
+		return Optional.of((double) sum / scores.length);
 	}
 }
